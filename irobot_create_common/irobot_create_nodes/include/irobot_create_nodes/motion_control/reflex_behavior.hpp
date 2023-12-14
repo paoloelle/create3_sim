@@ -56,12 +56,12 @@ private:
   std::mutex hazard_reflex_mutex_;
   /// \brief Map of hazard driven reflexes with whether they are enabled
   std::map<uint8_t, bool> hazard_reflex_enabled_ {
-    {irobot_create_msgs::msg::HazardDetection::BUMP, true},
-    {irobot_create_msgs::msg::HazardDetection::CLIFF, true},
-    {irobot_create_msgs::msg::HazardDetection::STALL, true},
-    {irobot_create_msgs::msg::HazardDetection::WHEEL_DROP, true}};
+    {irobot_create_msgs::msg::HazardDetection::BUMP, false},
+    {irobot_create_msgs::msg::HazardDetection::CLIFF, false},
+    {irobot_create_msgs::msg::HazardDetection::STALL, false},
+    {irobot_create_msgs::msg::HazardDetection::WHEEL_DROP, false}};
   /// \brief Whether to use reflexes
-  std::atomic<bool> reflexes_enabled_{true};
+  std::atomic<bool> reflexes_enabled_{false};
   /// \brief Helper function to declare ROS 2 reflex parameters
   void declare_parameters(
     rclcpp::node_interfaces::NodeParametersInterface::SharedPtr node_parameters_interface);

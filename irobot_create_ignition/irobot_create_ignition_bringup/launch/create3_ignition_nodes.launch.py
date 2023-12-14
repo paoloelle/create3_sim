@@ -61,5 +61,5 @@ def generate_launch_description():
     ld = LaunchDescription(ARGUMENTS)
     ld.add_action(pose_republisher_node)
     ld.add_action(sensors_node)
-    ld.add_action(interface_buttons_node)
+    #ld.add_action(interface_buttons_node)
     return ld

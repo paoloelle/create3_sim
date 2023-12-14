@@ -19,7 +19,7 @@ SensorsNode::SensorsNode()
   bumper_ = std::make_unique<Bumper>(nh_);
   cliff_ = std::make_unique<Cliff>(nh_);
   ir_intensity_ = std::make_unique<IrIntensity>(nh_);
-  mouse_ = std::make_unique<Mouse>(nh_);
+  //mouse_ = std::make_unique<Mouse>(nh_);
   wheel_drop_ = std::make_unique<WheelDrop>(nh_);
   ir_opcode_ = std::make_unique<IrOpcode>(nh_);
 }

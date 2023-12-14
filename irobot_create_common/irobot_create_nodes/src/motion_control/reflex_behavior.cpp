@@ -80,7 +80,7 @@ void ReflexBehavior::declare_parameters(
   // Declare parameter to enable or disable the reflex arbiter
   ret = node_parameters_interface->declare_parameter(
     reflex_enabled_param_name_, rclcpp::ParameterValue(
-      true), descriptor);
+      false), descriptor);
   reflexes_enabled_ = ret.get<bool>();
 }
 

@@ -23,11 +23,11 @@ PoseRepublisher::PoseRepublisher()
     this->declare_parameter("robot_publisher_topic", "sim_ground_truth_pose");
   std::string robot_sub_topic =
     this->declare_parameter("robot_subscriber_topic", "sim_ground_truth_pose");
-  std::string mouse_pub_topic =
-    this->declare_parameter("mouse_publisher_topic", "sim_ground_truth_mouse_pose");
+  //std::string mouse_pub_topic =
+  //  this->declare_parameter("mouse_publisher_topic", "sim_ground_truth_mouse_pose");
 
-  std::string dock_pub_topic =
-    this->declare_parameter("dock_publisher_topic", "sim_ground_truth_dock_pose");
+  //std::string dock_pub_topic =
+  //  this->declare_parameter("dock_publisher_topic", "sim_ground_truth_dock_pose");
   std::string dock_sub_topic =
     this->declare_parameter("dock_subscriber_topic", "sim_ground_truth_dock_pose");
   std::string ir_emitter_pub_topic =
@@ -44,22 +44,22 @@ PoseRepublisher::PoseRepublisher()
     robot_pub_topic,
     rclcpp::SensorDataQoS());
 
-  mouse_publisher_ = create_publisher<nav_msgs::msg::Odometry>(
-    mouse_pub_topic,
-    rclcpp::SensorDataQoS());
+  //mouse_publisher_ = create_publisher<nav_msgs::msg::Odometry>(
+  // mouse_pub_topic,
+  // rclcpp::SensorDataQoS());
 
   ir_opcode_receiver_publisher_ = create_publisher<nav_msgs::msg::Odometry>(
     ir_receiver_pub_topic,
     rclcpp::SensorDataQoS());
 
-  dock_subscriber_ = create_subscription<tf2_msgs::msg::TFMessage>(
-    dock_sub_topic,
-    rclcpp::SensorDataQoS(),
-    std::bind(&PoseRepublisher::dock_subscriber_callback, this, std::placeholders::_1));
+  //dock_subscriber_ = create_subscription<tf2_msgs::msg::TFMessage>(
+  //  dock_sub_topic,
+  //  rclcpp::SensorDataQoS(),
+  //  std::bind(&PoseRepublisher::dock_subscriber_callback, this, std::placeholders::_1));
 
-  dock_publisher_ = create_publisher<nav_msgs::msg::Odometry>(
-    dock_pub_topic,
-    rclcpp::SensorDataQoS());
+  //dock_publisher_ = create_publisher<nav_msgs::msg::Odometry>(
+  //  dock_pub_topic,
+  //  rclcpp::SensorDataQoS());
 
   ir_opcode_emitter_publisher_ = create_publisher<nav_msgs::msg::Odometry>(
     ir_emitter_pub_topic,

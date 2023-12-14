@@ -28,7 +28,7 @@ ARGUMENTS = [
                           description='Robot namespace'),
     DeclareLaunchArgument('use_rviz', default_value='true',
                           choices=['true', 'false'], description='Start rviz.'),
-    DeclareLaunchArgument('spawn_dock', default_value='true',
+    DeclareLaunchArgument('spawn_dock', default_value='false',
                           choices=['true', 'false'],
                           description='Spawn the standard dock model.'),
 ]

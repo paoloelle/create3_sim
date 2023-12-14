@@ -44,13 +44,13 @@ MotionControlNode::MotionControlNode(const rclcpp::NodeOptions & options)
   // Create behaviors scheduler
   scheduler_ = std::make_shared<BehaviorsScheduler>();
   // Create Docking Behavior manager
-  docking_behavior_ = std::make_shared<DockingBehavior>(
-    this->get_node_base_interface(),
-    this->get_node_clock_interface(),
-    this->get_node_logging_interface(),
-    this->get_node_topics_interface(),
-    this->get_node_waitables_interface(),
-    scheduler_);
+  //docking_behavior_ = std::make_shared<DockingBehavior>(
+  //  this->get_node_base_interface(),
+  //  this->get_node_clock_interface(),
+  //  this->get_node_logging_interface(),
+  //  this->get_node_topics_interface(),
+  //  this->get_node_waitables_interface(),
+  //  scheduler_);
   // Create Reflex Behavior manager
   reflex_behavior_ = std::make_shared<ReflexBehavior>(
     this->get_node_clock_interface(),
@@ -119,9 +119,9 @@ MotionControlNode::MotionControlNode(const rclcpp::NodeOptions & options)
     "odom", rclcpp::SensorDataQoS(),
     std::bind(&MotionControlNode::robot_pose_callback, this, _1));
 
-  kidnap_sub_ = this->create_subscription<irobot_create_msgs::msg::KidnapStatus>(
-    "kidnap_status", rclcpp::SensorDataQoS(),
-    std::bind(&MotionControlNode::kidnap_callback, this, _1));
+  //kidnap_sub_ = this->create_subscription<irobot_create_msgs::msg::KidnapStatus>(
+  //  "kidnap_status", rclcpp::SensorDataQoS(),
+  //  std::bind(&MotionControlNode::kidnap_callback, this, _1));
 
   cmd_vel_out_pub_ = this->create_publisher<geometry_msgs::msg::Twist>(
     "diffdrive_controller/cmd_vel_unstamped", rclcpp::SystemDefaultsQoS());
@@ -184,7 +184,7 @@ void MotionControlNode::declare_safety_parameters()
     "(0.46m/s vs 0.306m/s in other modes))}";
   descriptor.description = long_description_string.str();
   auto val = this->declare_parameter<std::string>(
-    safety_override_param_name_, "none",
+    safety_override_param_name_, "full",
     descriptor);
   if (val != "none") {
     set_safety_mode(val);
@@ -201,6 +201,7 @@ rcl_interfaces::msg::SetParametersResult MotionControlNode::set_parameters_callb
   result.successful = false;
 
   for (const rclcpp::Parameter & parameter : parameters) {
+    
     if (parameter.get_name() == safety_override_param_name_) {
       // Handle new value for parameters
       result.successful = set_safety_mode(parameter.get_value<std::string>());
@@ -213,7 +214,7 @@ rcl_interfaces::msg::SetParametersResult MotionControlNode::set_parameters_callb
         result.reason = "parameter \'" + parameter.get_name() +
           "\' cannot be set externally. Only updated from change in \'" +
           safety_override_param_name_ + "\' parameter";
-      }
+      } 
     }
   }
 

@@ -12,7 +12,7 @@
   <xacro:include filename="$(find irobot_create_description)/urdf/wheel_with_wheeldrop.urdf.xacro" />
 
   <!-- Gazebo version -->
-  <xacro:arg name="gazebo"                       default="classic" />
+  <xacro:arg name="gazebo"                       default="ignition" />
 
   <!-- Namespace -->
   <xacro:arg name="namespace"                    default=""/>
@@ -291,15 +291,15 @@
         <update_frequency>62</update_frequency>
       </plugin>
     </gazebo>
-    
-    <gazebo>
+  </xacro:if>  
+  
+  <!--
+  <xacro:if value="${'$(arg gazebo)' == 'default_ign'}">
       <plugin filename="libignition-gazebo-contact-system.so" name="ignition::gazebo::systems::Contact"></plugin>
-    </gazebo>
 
-    <gazebo>
       <plugin filename="libignition-gazebo-sensors-system.so" name="ignition::gazebo::systems::Sensors">
         <render_engine>ogre</render_engine>
       </plugin>
-    </gazebo>
-  </xacro:if>
+  </xacro:if>  
+  -->
 </robot>

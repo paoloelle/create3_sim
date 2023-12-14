@@ -73,7 +73,7 @@ def generate_launch_description():
     # Define LaunchDescription variable
     ld = LaunchDescription(ARGUMENTS)
     # Add nodes to LaunchDescription
-    ld.add_action(state_publisher)
-    ld.add_action(tf_odom_std_dock_link_publisher)
+    #ld.add_action(state_publisher)
+    #ld.add_action(tf_odom_std_dock_link_publisher)
 
     return ld
