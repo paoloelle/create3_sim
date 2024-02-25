@@ -139,6 +139,7 @@ def generate_launch_description():
                  'use_sim_time': use_sim_time,
                  'lazy': True
              }],
+
              arguments=[
                  ['/world/', world,
                   '/model/', robot_name,
@@ -201,7 +202,7 @@ def generate_launch_description():
     ld.add_action(pose_bridge)
     #ld.add_action(odom_base_tf_bridge)
     ld.add_action(bumper_contact_bridge)
-    #ld.add_action(cliff_bridges)
-    #ld.add_action(ir_bridges)
+    ld.add_action(cliff_bridges)
+    ld.add_action(ir_bridges)
     #ld.add_action(buttons_msg_bridge)
     return ld

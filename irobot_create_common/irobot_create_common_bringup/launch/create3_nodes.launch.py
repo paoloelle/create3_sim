@@ -140,7 +140,7 @@ def generate_launch_description():
     ld.add_action(diffdrive_controller)
     # Add nodes to LaunchDescription
     ld.add_action(hazards_vector_node)
-    #ld.add_action(ir_intensity_vector_node)
+    ld.add_action(ir_intensity_vector_node)
     ld.add_action(motion_control_node)
     #ld.add_action(wheel_status_node)
     #ld.add_action(mock_topics_node)
