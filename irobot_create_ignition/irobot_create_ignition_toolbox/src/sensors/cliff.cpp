@@ -33,6 +33,7 @@ Cliff::Cliff(std::shared_ptr<rclcpp::Node> & nh)
         topic,
         rclcpp::SensorDataQoS(),
         std::bind(&Cliff::cliff_callback, this, std::placeholders::_1)));
+        //std::bind(&Cliff::cliff_intensities_callback, this, std::placeholders::_1)));
   }
 
   for (const std::string & topic : cliff_pub_topics) {
@@ -42,9 +43,14 @@ Cliff::Cliff(std::shared_ptr<rclcpp::Node> & nh)
           irobot_create_msgs::msg::HazardDetection>(
           topic,
           rclcpp::SensorDataQoS());
+
       }
     }
   }
+
+  // publisher added by Paolo
+  intensites_pub_ = nh_->create_publisher<std_msgs::msg::Float32>("cliff_dummy_topic", 10);
+
 }
 
 void Cliff::cliff_callback(const sensor_msgs::msg::LaserScan::SharedPtr cliff_msg)
@@ -52,6 +58,7 @@ void Cliff::cliff_callback(const sensor_msgs::msg::LaserScan::SharedPtr cliff_ms
   constexpr double detection_threshold = 0.03;
 
   const double range_detection = irobot_create_toolbox::FindMinimumRange(cliff_msg->ranges);
+
   if (range_detection > detection_threshold) {
     auto hazard_msg = irobot_create_msgs::msg::HazardDetection();
     hazard_msg.type = irobot_create_msgs::msg::HazardDetection::CLIFF;
@@ -64,4 +71,22 @@ void Cliff::cliff_callback(const sensor_msgs::msg::LaserScan::SharedPtr cliff_ms
       }
     }
   }
+
+  for (const auto& cliff_intensity : cliff_msg->intensities){
+    auto dummy_msg = std_msgs::msg::Float32();
+    dummy_msg.data = cliff_intensity;  
+    intensites_pub_->publish(dummy_msg);
+  }
+  
+
 }
+
+//void Cliff::cliff_intensities_callback(const std_msgs::msg::Float32 cliff_msg)
+//{
+//  // Publish to appropriate topic
+//  auto dummy_msg = std_msgs::msg::Float32();
+//  dummy_msg.data = 1.0;  
+//  intensites_pub_->publish(dummy_msg);
+//    
+//  
+//}

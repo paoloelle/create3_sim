@@ -145,14 +145,14 @@ def generate_launch_description():
                   '/model/', robot_name,
                   '/link/base_link/sensor/' + cliff + '/scan' +
                   '@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan']
-             ]#,
-             #remappings=[
-             #    (['/world/', world,
-             #        '/model/', robot_name,
-             #        '/link/base_link/sensor/' + cliff + '/scan'],
-             #        '_internal/' + cliff + '/scan')
-             #])for cliff in cliff_sensors
-            )for cliff in cliff_sensors
+             ],
+             remappings=[
+                 (['/world/', world,
+                     '/model/', robot_name,
+                     '/link/base_link/sensor/' + cliff + '/scan'],
+                     '_internal/' + cliff + '/scan')
+             ])for cliff in cliff_sensors
+            #)for cliff in cliff_sensors
     ])
 
     # IR intensity bridges

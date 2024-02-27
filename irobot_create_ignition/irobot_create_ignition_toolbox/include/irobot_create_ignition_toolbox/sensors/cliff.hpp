@@ -14,6 +14,7 @@
 #include "irobot_create_msgs/msg/hazard_detection.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/laser_scan.hpp"
+#include "std_msgs/msg/float32.hpp"
 
 namespace irobot_create_ignition_toolbox
 {
@@ -35,11 +36,15 @@ public:
 private:
   void cliff_callback(const sensor_msgs::msg::LaserScan::SharedPtr cliff_msg);
 
+  void cliff_intensities_callback(const std_msgs::msg::Float32 cliff_msg);
+
   std::shared_ptr<rclcpp::Node> nh_;
 
   std::vector<rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr> cliff_sub_;
   std::map<std::string,
     rclcpp::Publisher<irobot_create_msgs::msg::HazardDetection>::SharedPtr> hazard_pub_;
+
+  rclcpp::Publisher<std_msgs::msg::Float32>::SharedPtr intensites_pub_;
 
   std::string cliff_sensors_[4];
 };
