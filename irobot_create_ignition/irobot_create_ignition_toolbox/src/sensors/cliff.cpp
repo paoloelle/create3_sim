@@ -49,7 +49,7 @@ Cliff::Cliff(std::shared_ptr<rclcpp::Node> & nh)
   }
 
   // publisher added by Paolo
-  intensites_pub_ = nh_->create_publisher<std_msgs::msg::Float32>("cliff_dummy_topic", 10);
+  //intensites_pub_ = nh_->create_publisher<std_msgs::msg::Float32>("cliff_dummy_topic", 10);
 
 }
 
@@ -72,11 +72,11 @@ void Cliff::cliff_callback(const sensor_msgs::msg::LaserScan::SharedPtr cliff_ms
     }
   }
 
-  for (const auto& cliff_intensity : cliff_msg->intensities){
-    auto dummy_msg = std_msgs::msg::Float32();
-    dummy_msg.data = cliff_intensity;  
-    intensites_pub_->publish(dummy_msg);
-  }
+  //for (const auto& cliff_intensity : cliff_msg->intensities){
+  //  auto dummy_msg = std_msgs::msg::Float32();
+  //  dummy_msg.data = cliff_intensity;  
+  //  intensites_pub_->publish(dummy_msg);
+  //}
   
 
 }

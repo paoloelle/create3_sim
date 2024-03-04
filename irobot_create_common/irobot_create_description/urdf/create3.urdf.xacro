@@ -137,7 +137,7 @@
       <plugin filename="libign_ros2_control-system.so" name="ign_ros2_control::IgnitionROS2ControlPlugin">
         <parameters>$(find irobot_create_control)/config/control.yaml</parameters>
         <ros>
-          <remapping>~/odom:=odom</remapping>
+          <remapping>~/odom:=odom44</remapping>
           <remapping>/tf:=tf</remapping>
           <remapping>/tf_static:=tf_static</remapping>
           <remapping>/diagnostics:=diagnostics</remapping>
@@ -286,7 +286,7 @@
     <gazebo>
       <plugin filename="libignition-gazebo-pose-publisher-system.so" name="ignition::gazebo::systems::PosePublisher">
         <publish_link_pose>true</publish_link_pose>
-        <publish_nested_model_pose>true</publish_nested_model_pose>
+        <publish_nested_model_pose>false</publish_nested_model_pose>
         <use_pose_vector_msg>true</use_pose_vector_msg>
         <update_frequency>62</update_frequency>
       </plugin>
