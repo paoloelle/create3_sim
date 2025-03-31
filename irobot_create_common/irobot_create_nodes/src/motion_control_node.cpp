@@ -44,13 +44,13 @@ MotionControlNode::MotionControlNode(const rclcpp::NodeOptions & options)
   // Create behaviors scheduler
   scheduler_ = std::make_shared<BehaviorsScheduler>();
   // Create Docking Behavior manager
-  docking_behavior_ = std::make_shared<DockingBehavior>(
-    this->get_node_base_interface(),
-    this->get_node_clock_interface(),
-    this->get_node_logging_interface(),
-    this->get_node_topics_interface(),
-    this->get_node_waitables_interface(),
-    scheduler_);
+  // docking_behavior_ = std::make_shared<DockingBehavior>(
+  //   this->get_node_base_interface(),
+  //   this->get_node_clock_interface(),
+  //   this->get_node_logging_interface(),
+  //   this->get_node_topics_interface(),
+  //   this->get_node_waitables_interface(),
+  //   scheduler_);
   // Create Reflex Behavior manager
   reflex_behavior_ = std::make_shared<ReflexBehavior>(
     this->get_node_clock_interface(),
@@ -122,9 +122,9 @@ MotionControlNode::MotionControlNode(const rclcpp::NodeOptions & options)
     "odom", rclcpp::SensorDataQoS(),
     std::bind(&MotionControlNode::robot_pose_callback, this, _1));
 
-  kidnap_sub_ = this->create_subscription<irobot_create_msgs::msg::KidnapStatus>(
-    "kidnap_status", rclcpp::SensorDataQoS(),
-    std::bind(&MotionControlNode::kidnap_callback, this, _1));
+  // kidnap_sub_ = this->create_subscription<irobot_create_msgs::msg::KidnapStatus>(
+  //   "kidnap_status", rclcpp::SensorDataQoS(),
+  //   std::bind(&MotionControlNode::kidnap_callback, this, _1));
 
   cmd_vel_out_pub_ = this->create_publisher<geometry_msgs::msg::TwistStamped>(
     "diffdrive_controller/cmd_vel", rclcpp::SystemDefaultsQoS());
@@ -187,7 +187,7 @@ void MotionControlNode::declare_safety_parameters()
     "(0.46m/s vs 0.306m/s in other modes))}";
   descriptor.description = long_description_string.str();
   auto val = this->declare_parameter<std::string>(
-    safety_override_param_name_, "none",
+    safety_override_param_name_, "full",
     descriptor);
   if (val != "none") {
     set_safety_mode(val);

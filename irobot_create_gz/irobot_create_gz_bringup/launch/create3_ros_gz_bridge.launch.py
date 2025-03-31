@@ -78,33 +78,33 @@ def generate_launch_description():
                        arguments=[
                            ['/model/', robot_name, '/pose' +
                             '@tf2_msgs/msg/TFMessage' +
-                            '[ignition.msgs.Pose_V'],
-                           ['/model/', dock_name, '/pose' +
-                            '@tf2_msgs/msg/TFMessage' +
-                            '[ignition.msgs.Pose_V']
+                            '[ignition.msgs.Pose_V']#,
+                        #    ['/model/', dock_name, '/pose' +
+                        #     '@tf2_msgs/msg/TFMessage' +
+                        #     '[ignition.msgs.Pose_V']
                        ],
                        remappings=[
                            (['/model/', robot_name, '/pose'],
-                            '_internal/sim_ground_truth_pose'),
-                           (['/model/', dock_name, '/pose'],
-                            '_internal/sim_ground_truth_dock_pose')
+                            '_internal/sim_ground_truth_pose')#,
+                        #    (['/model/', dock_name, '/pose'],
+                        #     '_internal/sim_ground_truth_dock_pose')
                        ])
 
     # odom to base_link transform bridge
-    odom_base_tf_bridge = Node(package='ros_gz_bridge', executable='parameter_bridge',
-                               name='odom_base_tf_bridge',
-                               output='screen',
-                               parameters=[{
-                                   'use_sim_time': use_sim_time
-                               }],
-                               arguments=[
-                                   ['/model/', robot_name, '/tf' +
-                                    '@tf2_msgs/msg/TFMessage' +
-                                    '[ignition.msgs.Pose_V']
-                               ],
-                               remappings=[
-                                   (['/model/', robot_name, '/tf'], 'tf')
-                               ])
+    # odom_base_tf_bridge = Node(package='ros_gz_bridge', executable='parameter_bridge',
+    #                            name='odom_base_tf_bridge',
+    #                            output='screen',
+    #                            parameters=[{
+    #                                'use_sim_time': use_sim_time
+    #                            }],
+    #                            arguments=[
+    #                                ['/model/', robot_name, '/tf' +
+    #                                 '@tf2_msgs/msg/TFMessage' +
+    #                                 '[ignition.msgs.Pose_V']
+    #                            ],
+    #                            remappings=[
+    #                                (['/model/', robot_name, '/tf'], 'tf')
+    #                            ])
 
     # Bumper contact sensor bridge
     bumper_contact_bridge = Node(package='ros_gz_bridge', executable='parameter_bridge',
@@ -194,9 +194,9 @@ def generate_launch_description():
     ld = LaunchDescription(ARGUMENTS)
     ld.add_action(cmd_vel_bridge)
     ld.add_action(pose_bridge)
-    ld.add_action(odom_base_tf_bridge)
+    # ld.add_action(odom_base_tf_bridge)
     ld.add_action(bumper_contact_bridge)
-    ld.add_action(cliff_bridges)
-    ld.add_action(ir_bridges)
-    ld.add_action(buttons_msg_bridge)
+    # ld.add_action(cliff_bridges)
+    # ld.add_action(ir_bridges)
+    # ld.add_action(buttons_msg_bridge)
     return ld
