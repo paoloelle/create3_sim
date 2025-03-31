@@ -285,7 +285,7 @@
   <xacro:if value="${'$(arg gazebo)' == 'ignition'}">
     <gazebo>
       <plugin filename="libgz-sim-pose-publisher-system.so" name="gz::sim::systems::PosePublisher">
-        <publish_link_pose>true</publish_link_pose>
+        <publish_link_pose>false</publish_link_pose>
         <publish_nested_model_pose>true</publish_nested_model_pose>
         <use_pose_vector_msg>true</use_pose_vector_msg>
         <update_frequency>62</update_frequency>
