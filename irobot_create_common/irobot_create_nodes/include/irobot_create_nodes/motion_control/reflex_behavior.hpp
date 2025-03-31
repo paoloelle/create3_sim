@@ -61,7 +61,7 @@ private:
     {irobot_create_msgs::msg::HazardDetection::STALL, true},
     {irobot_create_msgs::msg::HazardDetection::WHEEL_DROP, true}};
   /// \brief Whether to use reflexes
-  std::atomic<bool> reflexes_enabled_{true};
+  std::atomic<bool> reflexes_enabled_{false};
   /// \brief Helper function to declare ROS 2 reflex parameters
   void declare_parameters(
     rclcpp::node_interfaces::NodeParametersInterface::SharedPtr node_parameters_interface);

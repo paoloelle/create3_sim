@@ -77,7 +77,7 @@ def generate_launch_description():
         executable='motion_control',
         parameters=[{
             'use_sim_time': True,
-            'safety_override': 'backup_only'
+            'safety_override': 'full'
         }],
         output='screen',
         remappings=[
