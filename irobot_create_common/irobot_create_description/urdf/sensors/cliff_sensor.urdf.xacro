@@ -24,7 +24,7 @@
     <xacro:inertial_dummy/>
   </link>
 
-  <gazebo reference="${sensor_name}">
+  <!-- <gazebo reference="${sensor_name}">
     <xacro:ray_sensor sensor_name="${sensor_name}" gazebo="${gazebo}" 
                       update_rate="${update_rate}" visualize="${visualize}" 
                       h_samples="${samples}" h_res="1.0" h_min_angle="-${fov_rad/2}" h_max_angle="${fov_rad/2}" 
@@ -38,7 +38,7 @@
         <frame_id>${sensor_name}</frame_id>
       </plugin>
     </xacro:ray_sensor>
-  </gazebo>
+  </gazebo> -->
 </xacro:macro>
 
 </robot>
