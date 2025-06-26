@@ -296,10 +296,10 @@
       <plugin filename="libgz-sim-contact-system.so" name="gz::sim::systems::Contact"></plugin>
     </gazebo>
 
-    <gazebo>
+    <!-- <gazebo>
       <plugin filename="libgz-sim-sensors-system.so" name="gz::sim::systems::Sensors">
         <render_engine>ogre</render_engine>
       </plugin>
-    </gazebo>
+    </gazebo> -->
   </xacro:if>
 </robot>
